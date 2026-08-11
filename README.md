@@ -4,8 +4,8 @@ This repository is made to contain codes from "Computer Programming" for learnin
 All statements can be found in __[CEDT Starter Kit](https://drive.google.com/drive/folders/1uziX21XRAi0iA-7w5d19SV9p0CIXzg0m?usp=drive_link)__
 
 ## Table of Content
-- [01-String](#-01-String)
-- [02-Condition](#-02-Condition)
+- [01-String](#01-String)
+- [02-Condition](#02-Condition)
 
 Please Enjoy!
 
