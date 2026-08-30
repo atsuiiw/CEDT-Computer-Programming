@@ -13,9 +13,9 @@ int main() {
             else if(islower(x)) lower|=1;
             else special|=1;
         }
-        if(lower && upper && num && special && len>=12) std::cout<<"strong\n";
-        else if(lower && upper && num && len>=8) std::cout<<"weak\n";
-        else std::cout<<"invalid\n";
+        if(lower && upper && num && special && len>=12) std::cout<<">> strong\n";
+        else if(lower && upper && num && len>=8) std::cout<<">> weak\n";
+        else std::cout<<">> invalid\n";
     }
     return 0;
 }
