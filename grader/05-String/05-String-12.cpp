@@ -1,5 +1,7 @@
 #include<iostream>
+#include<string>
 #include<vector>
+#include<algorithm>
 
 const int N = 1010;
 std::vector<char> result(N,'0');

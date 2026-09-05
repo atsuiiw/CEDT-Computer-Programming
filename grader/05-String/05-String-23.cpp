@@ -13,7 +13,7 @@ void plus(std::string s,std::string m) {
     int tod1 = temp / 1000;
     firstDigit += tod1;
     secondDigit += firstDigit/26;
-    front += firstDigit/26;
+    front += secondDigit/26;
     secondDigit %= 26;
     firstDigit %= 26;
 
