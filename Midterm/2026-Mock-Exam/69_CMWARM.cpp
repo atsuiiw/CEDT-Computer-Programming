@@ -18,8 +18,7 @@ int main() {
         }
     }
     while(1){
-        if(myHP<=0 || bossHP<=0) break;
-
+        
         // reset
         defense = 0;
         bossMultiplier = 1.0;
