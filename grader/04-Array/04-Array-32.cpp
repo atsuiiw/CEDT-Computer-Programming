@@ -1,42 +1,46 @@
-#include <bits/stdc++.h>
-using namespace std;
-using ll = long long;
+#include<iostream>
 
-int sign(int x) { return (x>0)-(x<0); }
+const int N = 1010;
+struct A{
+	int idx,st,en;
+} lift[N];
 
-ll extraCost(int C, int D, int S, int T) {
-    bool inPath = min(C, D) <= S && S <= max(C, D);
-    int dirElev = sign(D - C);
-    int dirPerson = sign(T - S);
+int costCalculate(int S,int T,int st,int en) {
+	int dirLift = 0 + (en-st > 0 ? 1 : -1); // 1 means going up and -1 means going down
+	int inPath = std::min(st,en) <= S && S<= std::max(st,en);
+	int dirPerson = 0 + (T-S > 0 ? 1 : -1); // 1 means going up and -1 means going down
+	
+	// case inPath and going in the same direction
+	if(inPath && dirLift!=0 && dirLift == dirPerson){
+		if(dirLift == 1) return std::max(0,T-en);
+		else return std::max(0,en-T);
+	}
 
-    if (inPath && dirElev != 0 && dirElev == dirPerson) {
-        if (dirElev == 1)  return max(0, T - D);
-        else               return max(0, D - T);
-    }
-    return abs(D - S) + abs(S - T);
+	// other cases like, the person isn't inPath, the lift and person is going on a different direction
+	return abs(en-S) + abs(T-S);
 }
 
 int main() {
-    ll n; cin >> n;
-    vector<ll> C(n), D(n), IDX(n);
-    for (int i = 0; i < n; i++) cin>>IDX[i]>>C[i]>>D[i];
+	std::cin.tie(nullptr)->sync_with_stdio(0);
+	int n; std::cin>>n;
+	for(int i=1;i<=n;i++) std::cin>>lift[i].idx>>lift[i].st>>lift[i].en;
+	int q; std::cin>>q;
+	while(q--){
+		int S,T; std::cin>>S>>T;
+		
+		int best=-1,costBest=2e9;
+		for(int i=1;i<=n;i++){
+			int cost = costCalculate(S,T,lift[i].st,lift[i].en);
+			if(cost <= costBest){
+				if(costBest == cost){
+					best = std::min(best,lift[i].idx);
+				}
+				else best = lift[i].idx;
+				costBest = cost;
+			}
+		}
 
-    
-    int q; cin>>q;
-    while(q--){
-        ll S, T; cin>>S>>T;
-        ll best = -1, bestCost = INT_MAX;
-        for (int i = 0; i < n; i++) {
-            int cost = extraCost(C[i], D[i], S, T);
-            if(cost <= bestCost){
-                if(bestCost==cost){
-                    best = min(best,IDX[i]);
-                }
-                else best = IDX[i];
-                bestCost = cost;
-            }
-        }
-        cout<<">> "<<best<<'\n';
-    }
-    
+		std::cout<<">> "<<best<<'\n';
+	}
+	return 0;
 }
